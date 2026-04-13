@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &316554689493781155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6694856587280450744}
+  - component: {fileID: 4812740695239464705}
+  - component: {fileID: 6117869938190379179}
+  - component: {fileID: 8064678631542658079}
+  - component: {fileID: 5193045780898540422}
+  - component: {fileID: 315528492045893506}
+  - component: {fileID: 6323719988629064338}
+  m_Layer: 0
+  m_Name: Managers - Default
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6694856587280450744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4812740695239464705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4f35b871a757d44b3c1b0e3765021c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6117869938190379179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2423040b874d78a303b9145569c1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaScript: {fileID: 3156155758468439326, guid: be5cb876a96641b4298ff24f601b3494, type: 3}
+  injection:
+    objectValues: []
+    gameObjectValues: []
+    vector3Values: []
+    floatValue: []
+    intValue: []
+    boolValue: []
+    stringValue: []
+    colorValue: []
+    vivenScriptValue:
+    - name: EventBus
+      value: {fileID: 3156155758468439326, guid: 4ef1ddb85affebb479318e40816ed5f9, type: 3}
+    - name: JsonUtil
+      value: {fileID: 3156155758468439326, guid: fb89ec7a348d34c429500f756f44a6f1, type: 3}
+--- !u!114 &8064678631542658079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d07e3b377ec3d48961467bba764b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: AI Manager
+  objectId: de5dd5dc-d5dc-de5d-dcd5-5ddedcd55dde
+  contentType: 0
+  objectSyncType: 0
+  isInitialized: 1
+  isPrefab: 1
+--- !u!114 &5193045780898540422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2aa26d93f0e3574280ab715e521e255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaBehaviour: {fileID: 315528492045893506}
+  viewSyncType: 0
+--- !u!114 &315528492045893506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2423040b874d78a303b9145569c1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaScript: {fileID: 3156155758468439326, guid: b5da8f13a8f66ff4da897146fd2e3a74, type: 3}
+  injection:
+    objectValues: []
+    gameObjectValues:
+    - name: AiAvatarObject
+      value: {fileID: 0}
+    - name: MoveTargetsObject
+      value: {fileID: 0}
+    vector3Values: []
+    floatValue: []
+    intValue: []
+    boolValue: []
+    stringValue: []
+    colorValue: []
+    vivenScriptValue: []
+--- !u!114 &6323719988629064338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316554689493781155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2423040b874d78a303b9145569c1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  luaScript: {fileID: 3156155758468439326, guid: 77ab3dd7390960649a8fb7b40a977368, type: 3}
+  injection:
+    objectValues: []
+    gameObjectValues: []
+    vector3Values: []
+    floatValue: []
+    intValue: []
+    boolValue: []
+    stringValue: []
+    colorValue: []
+    vivenScriptValue: []

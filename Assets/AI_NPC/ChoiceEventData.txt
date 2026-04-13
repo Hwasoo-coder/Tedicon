@@ -1,0 +1,7 @@
+{  
+
+"event_name": "None, Move to ExampleTarget",  
+
+"instruction": "When the user asks about SOMETHING, select 'Move to ExampleTarget'. If the user's question is unrelated to SOMETHING, select 'None' by default."
+
+}
