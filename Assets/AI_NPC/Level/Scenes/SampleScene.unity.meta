@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 99c9720ab356a0642a771bea13969a05
+guid: 832794046ad9a3143be8f8dbbdc36ac3
 DefaultImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 262473
+  packageName: Low-Poly Medieval Market
+  packageVersion: 1.1
+  assetPath: Assets/AI_NPC/Level/Scenes/SampleScene.unity
+  uploadId: 617661
