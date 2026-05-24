@@ -34,7 +34,35 @@ namespace TwentyOz.VivenSDK.Scripts.Editor.Build
         /// <summary>
         /// VivenLauncher가 TestOnViven 모드에서 VMap을 불러올 임시 경로
         /// </summary>
-        private static string TestOnVivenPath => $"{Path.GetTempPath()}/VivenSDK/";
+        private static string DefaultTestOnVivenPath => $"{Path.GetTempPath()}/VivenSDK/";
+
+        private const string CustomBuildOutputPathKey = "VivenSDK_CustomBuildOutputPath";
+
+        /// <summary>
+        /// TestOnViven 빌드 출력 경로.
+        /// CustomBuildOutputPath가 설정되어 있으면 해당 경로를, 아니면 기본 Temp 경로를 반환합니다.
+        /// </summary>
+        private static string TestOnVivenPath
+        {
+            get
+            {
+                var custom = CustomBuildOutputPath;
+                if (!string.IsNullOrEmpty(custom))
+                    return custom.EndsWith("/") || custom.EndsWith("\\") ? custom : custom + "/";
+                return DefaultTestOnVivenPath;
+            }
+        }
+
+        /// <summary>
+        /// 커스텀 빌드 출력 경로. 비어 있으면 기본 Temp 경로를 사용합니다.
+        /// VivenLauncher(viven_clone)의 CustomCatalogPath와 동일한 디렉토리를 지정하면
+        /// 빌드 결과물이 해당 경로에 생성되어 바로 로드할 수 있습니다.
+        /// </summary>
+        public static string CustomBuildOutputPath
+        {
+            get => EditorPrefs.GetString(CustomBuildOutputPathKey, string.Empty);
+            set => EditorPrefs.SetString(CustomBuildOutputPathKey, value);
+        }
 
         private const string ManifestFileName = "manifest.json";
         private const string ManifestHashFileName = "manifest.hash";
@@ -646,12 +674,13 @@ namespace TwentyOz.VivenSDK.Scripts.Editor.Build
     #region Test On Viven
 
         /// <summary>
-        /// VivenMap을 에디터에서 실행하기 위한 임시 기능
+        /// VivenMap을 에디터에서 실행하기 위한 임시 기능.
+        /// CustomBuildOutputPath가 설정되어 있으면 해당 경로로, 아니면 기본 Temp 경로로 빌드합니다.
         /// </summary>
         public static BuildResultData BuildVMapOnLocalTemp()
         {
-            // VivenClient 가 "Path.GetTempPath()/VivenSDK/" 에서 VMap을 실행하기 때문에 경로 유지해줘야 함
             var tmpPath = TestOnVivenPath;
+            Debug.Log($"[VivenBuildManager] TestOnViven 빌드 출력 경로: {tmpPath}");
 
             // Clear all files in Tmp Directory
             if (Directory.Exists(tmpPath)) Directory.Delete(tmpPath, true); // Delete Directory
@@ -718,7 +747,41 @@ namespace TwentyOz.VivenSDK.Scripts.Editor.Build
             var triggerFilePath = Path.Combine(TestOnVivenPath, "reload_trigger.txt");
             File.WriteAllText(triggerFilePath, DateTime.Now.ToString(CultureInfo.CurrentCulture));
         }
-        
+
+        /// <summary>
+        /// 현재 TestOnViven 빌드 출력 경로를 반환합니다.
+        /// </summary>
+        public static string GetCurrentBuildOutputPath() => TestOnVivenPath;
+
+        /// <summary>
+        /// TestOnViven 빌드 출력 경로를 설정하는 다이얼로그를 엽니다.
+        /// </summary>
+        [MenuItem("VIVEN SDK/DEV/Set Build Output Path")]
+        public static void SetBuildOutputPathDialog()
+        {
+            var currentPath = CustomBuildOutputPath;
+            if (string.IsNullOrEmpty(currentPath))
+                currentPath = DefaultTestOnVivenPath;
+
+            var selectedPath = EditorUtility.OpenFolderPanel(
+                "Select TestOnViven Build Output Directory", currentPath, "");
+
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                CustomBuildOutputPath = selectedPath;
+                Debug.Log($"[VivenBuildManager] TestOnViven 빌드 출력 경로 변경: {selectedPath}");
+            }
+        }
+
+        /// <summary>
+        /// TestOnViven 빌드 출력 경로를 기본값(Temp/VivenSDK)으로 초기화합니다.
+        /// </summary>
+        [MenuItem("VIVEN SDK/DEV/Reset Build Output Path")]
+        public static void ResetBuildOutputPath()
+        {
+            CustomBuildOutputPath = string.Empty;
+            Debug.Log($"[VivenBuildManager] TestOnViven 빌드 출력 경로가 기본값으로 초기화됨: {DefaultTestOnVivenPath}");
+        }
 
     #endregion
 

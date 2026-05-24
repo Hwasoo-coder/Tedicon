@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: be1f44fe6c127cd4d8b690583d7e3fb9
+  m_DefaultGroup: b0896bcf9aaf47849bfbda6c513c124c
   m_currentHash:
     serializedVersion: 2
-    Hash: 00000000000000000000000000000000
+    Hash: 64b78120c79888b293f0a6b09fde239e
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -34,7 +34,6 @@ MonoBehaviour:
   m_UniqueBundleIds: 1
   m_EnableJsonCatalog: 1
   m_NonRecursiveBuilding: 1
-  m_AllowNestedBundleFolders: 0
   m_CCDEnabled: 0
   m_maxConcurrentWebRequests: 3
   m_UseUWRForLocalBundles: 0
@@ -47,10 +46,10 @@ MonoBehaviour:
   m_StripUnityVersionFromBundleBuild: 0
   m_DisableVisibleSubAssetRepresentations: 0
   m_BuiltInBundleNaming: 2
-  mBuiltInBundleCustomNaming: 3035a975-ba30-4f8d-a83e-5252a0c37fcb
+  mBuiltInBundleCustomNaming: 69d3513a-750f-44c3-ab6b-455b5ff96e6c
   m_MonoScriptBundleNaming: 2
   m_CheckForContentUpdateRestrictionsOption: 0
-  m_MonoScriptBundleCustomNaming: 3035a975-ba30-4f8d-a83e-5252a0c37fcb
+  m_MonoScriptBundleCustomNaming: 69d3513a-750f-44c3-ab6b-455b5ff96e6c
   m_RemoteCatalogBuildPath:
     m_Id: c034c4ace0f1e044da75b4fb8711b527
   m_RemoteCatalogLoadPath:
@@ -78,7 +77,7 @@ MonoBehaviour:
       - m_Id: 47a3504e80c39d64288d6eea703f9f9d
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: c034c4ace0f1e044da75b4fb8711b527
-        m_Value: 'ServerData/00643c96-41a6-41a1-a77f-2050a91c57b5/prac_1/[BuildTarget]'
+        m_Value: 'ServerData/91d0935a-3610-4c0c-9b88-e8f7f53de20e/main/[BuildTarget]'
       - m_Id: f00017f3a0d9e714abdea0e63dfe722b
         m_Value: '{{REMOTE_PATH}}/'
     m_ProfileEntryNames:
