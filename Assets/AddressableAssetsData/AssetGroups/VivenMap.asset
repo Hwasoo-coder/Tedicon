@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: VivenMap
   m_EditorClassIdentifier: 
   m_GroupName: VivenMap
-  m_GUID: 8de983cff379f33409d8fbaabec12a47
+  m_GUID: be1f44fe6c127cd4d8b690583d7e3fb9
   m_SerializeEntries:
-  - m_GUID: d61f860350766444680367211d49c33f
+  - m_GUID: 5a3a4b1ec5d1993469f3c601014f6ee6
     m_Address: vmap
     m_ReadOnly: 0
     m_SerializedLabels: []
