@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468a46d0ae32c3544b7d98094e6448a9, type: 3}
   m_Name: AddressableAssetSettings
   m_EditorClassIdentifier: 
-  m_DefaultGroup: 5f79a114485dd6841a111905786061d8
+  m_DefaultGroup: 9ece4d3435bb2294dba5a75d93fe897e
   m_currentHash:
     serializedVersion: 2
-    Hash: c0a2fa33146ac82125e338ccb369f075
+    Hash: 74c95449d54fcfcacebae48ef45286b0
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_StripUnityVersionFromBundleBuild: 0
   m_DisableVisibleSubAssetRepresentations: 0
   m_BuiltInBundleNaming: 2
-  mBuiltInBundleCustomNaming: fa536c61-aa9a-4a34-b6fc-e930ce74f42f
+  mBuiltInBundleCustomNaming: 227ea12f-b2fc-477e-9819-3f6421d4b798
   m_MonoScriptBundleNaming: 2
   m_CheckForContentUpdateRestrictionsOption: 0
-  m_MonoScriptBundleCustomNaming: fa536c61-aa9a-4a34-b6fc-e930ce74f42f
+  m_MonoScriptBundleCustomNaming: 227ea12f-b2fc-477e-9819-3f6421d4b798
   m_RemoteCatalogBuildPath:
     m_Id: c034c4ace0f1e044da75b4fb8711b527
   m_RemoteCatalogLoadPath:
@@ -77,9 +77,9 @@ MonoBehaviour:
       - m_Id: 47a3504e80c39d64288d6eea703f9f9d
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: c034c4ace0f1e044da75b4fb8711b527
-        m_Value: C:\Users\hanye\AppData\Local\Temp\/VivenSDK/
+        m_Value: C:\Users\user\AppData\Local\Temp\/VivenSDK/
       - m_Id: f00017f3a0d9e714abdea0e63dfe722b
-        m_Value: C:\Users\hanye\AppData\Local\Temp\/VivenSDK/
+        m_Value: C:\Users\user\AppData\Local\Temp\/VivenSDK/
     m_ProfileEntryNames:
     - m_Id: 05c66813d4df4104a991fc66ca864f7a
       m_Name: BuildTarget
