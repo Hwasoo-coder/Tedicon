@@ -11,6 +11,7 @@
 ---@field MoveByOffset fun(offset:Vector3) 아바타 캐릭터를 기준으로 파라미터만큼 이동. Host에서 호출됩니다.
 ---@field StopMove_Request fun() 이동 중지. Host에서 호출됩니다.
 ---@field StopMove_Host fun() 이동 중지
+---@field WarpToNavMesh_Host fun() NPC를 가장 가까운 NavMesh 위치로 강제 이동
 ---@field SetNavAgentEnabled fun(enabled:boolean) NavMeshAgent 활성화/비활성화
 ---@
 
@@ -77,9 +78,14 @@ end
 ---@param targetY number 타겟 Y 좌표
 ---@param targetZ number 타겟 Z 좌표
 function MoveToTargetPos_Host(targetX, targetY, targetZ)
-    if (navAgent ~= nil) then
+    if (navAgent ~= nil and navAgent.enabled and navAgent.isOnNavMesh) then 
         moveTargetPos = Vector3(targetX, targetY, targetZ)
         navAgent:SetDestination(moveTargetPos)
+    else
+        if navAgent ~= nil and navAgent.enabled and not navAgent.isOnNavMesh then
+            -- NPC가 NavMesh 위에 없을 때 로그 출력
+            Debug.LogWarning("[AvatarMoveController] NPC가 NavMesh 영역 밖에 있습니다! 현재 위치: " .. tostring(avatarTransform.position))
+        end
     end
 end
 
@@ -92,7 +98,7 @@ end
 -- 타겟 오브젝트로 이동. NavMeshAgent 필요
 ---@param targetObjectName string 타겟 오브젝트 이름. 해당 타겟은 inject된 오브젝트이어야 합니다.
 function MoveToTargetObject_Host(targetObjectName)
-    if (navAgent ~= nil) then
+    if (navAgent ~= nil and navAgent.enabled and navAgent.isOnNavMesh) then
         moveTargetPos = targetObjectName.transform.position
         navAgent:SetDestination(moveTargetPos)
     end
@@ -116,11 +122,11 @@ function MoveToTargetObjectContinuous_Host(targetObjectName, maxDistance)
     moveTargetPos = targetObjectName.transform.position
 
     if (navAgent ~= nil) then
-        moveRoutine = self:StartCoroutine(util.cs_generator(function ()
+        moveRoutine = self:StartCoroutine(util.cs_generator(function () 
         local isArriveFirst = true
             while (true) do
                 if (Vector3.Distance(avatarTransform.position, targetObjectName.transform.position) < maxDistance) then
-                    -- 도착 지점에 도달
+                    -- 도착 지점에 도달 
                     if (not isArriveFirst) then
                         -- 도착한 직후이면 타겟을 바라보게 함
                         isArriveFirst = true
@@ -133,7 +139,9 @@ function MoveToTargetObjectContinuous_Host(targetObjectName, maxDistance)
                         avatarTransform:DoLookAt(targetObjectName.transform.position, 1)
                     end
                     isArriveFirst = false
-                    navAgent:SetDestination(targetObjectName.transform.position)
+                    if navAgent.enabled and navAgent.isOnNavMesh then
+                        navAgent:SetDestination(targetObjectName.transform.position)
+                    end
                 end
                 coroutine.yield(nil)
             end
@@ -154,7 +162,7 @@ end
 function MoveByOffset_Host(offsetX, offsetY, offsetZ)
     local worldOffset = avatarTransform:TransformDirection(offsetX, offsetY, offsetZ)
     local targetPosition = avatarTransform.position + worldOffset
-    if (navAgent ~= nil) then
+    if (navAgent ~= nil and navAgent.enabled and navAgent.isOnNavMesh) then
         navAgent:SetDestination(targetPosition)
     end
 end
@@ -167,7 +175,7 @@ end
 -- 이동 중지
 function StopMove_Host()
     moveTargetPos = nil
-    if (navAgent ~= nil) then
+    if (navAgent ~= nil and navAgent.enabled and navAgent.isOnNavMesh) then
         navAgent:ResetPath()
     end
     if (moveRoutine ~= nil) then
@@ -176,15 +184,35 @@ function StopMove_Host()
     end
 end
 
+-- NPC를 가장 가까운 유효한 NavMesh 위로 강제 이동(워프) 시킵니다.
+function WarpToNavMesh_Host()
+    if navAgent == nil then return end
+    
+    -- NavMesh.SamplePosition(현재위치, 검색반경, 영역마스크)
+    -- XLua에서 out 매개변수는 return 값으로 전달됩니다. (success, hit)
+    local success, hit = CS.UnityEngine.AI.NavMesh.SamplePosition(avatarTransform.position, 2.0, CS.UnityEngine.AI.NavMesh.AllAreas)
+    
+    if success then
+        navAgent:Warp(hit.position)
+        Debug.Log("[AvatarMoveController] NPC를 NavMesh 위치로 워프했습니다: " .. tostring(hit.position))
+    else
+        Debug.LogWarning("[AvatarMoveController] 근처 2.0m 내에서 유효한 NavMesh 위치를 찾을 수 없습니다. 지형 배치를 확인해주세요.")
+    end
+end
+
 function onSyncViewInitialized()
     if (avatarVivenBridge.GetIsMine() == false) then
         navAgent.enabled = false
+    else
+        -- 호스트라면 시작 시 NavMesh 위로 안착 시도
+        WarpToNavMesh_Host()
     end
 end
 
 function onOwnershipChanged(isMine)
     if (isMine == true) then
         navAgent.enabled = true
+        WarpToNavMesh_Host() -- 소유권이 넘어왔을 때 다시 한 번 워프 시도
     end
 end
 

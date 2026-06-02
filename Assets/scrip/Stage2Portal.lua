@@ -14,6 +14,16 @@ function onPlayerEnter(userID)
     Player.Mine.TeleportPlayer(Vector3(91.91, 0.73, 4068.64), Quaternion.identity)
     Debug.Log("[Stage2Portal] TeleportPlayer 실행 완료")
 
+    -- Stage 3 진입 메시지를 상단 HUD에 고정
+    if Global.SetStageInfo ~= nil then
+        Global.SetStageInfo("Welcome to the Autumn Stage. Step into the golden maze and learn the value of Courage. Do not be afraid of losing your way in this labyrinth. When you are ready, trust your senses and find your true path to the exit by following the red flowers!")
+    end
+
+    -- Stage 3 음악 재생
+    if Global.SoundManager ~= nil then
+        Global.SoundManager.PlayBGM(3)
+    end
+
     -- 포탈 밖으로 나갔을 때 다시 활성화되도록 IsTeleporting을 즉시 해제하거나, 
     -- 이동 거리가 멀다면 아래와 같이 바로 초기화해도 무방합니다.
     IsTeleporting = false

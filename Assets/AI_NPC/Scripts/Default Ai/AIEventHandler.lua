@@ -17,6 +17,7 @@ OBJECT = checkInject(OBJECT) -- {displayName}
 AiAvatarObject = checkInject(AiAvatarObject) -- AI와의 연결을 담당하는 오브젝트
 
 ChoiceEventData = NullableInject(ChoiceEventData) -- AI가 행동을 선택할 때 전달할 이벤트 데이터
+
 -- ... 
 _INJECTED_ORDER = 0
 --endregion
@@ -138,6 +139,13 @@ function OnAiEventReceived_Host(eventName)
             avatarAnimationController.SetDefaultRotation(moveTargets[targetName].self.transform.rotation)
         else
             Debug.Log("이동 타겟을 찾을 수 없습니다: " .. targetName)
+        end
+    elseif eventName == "ActivatePortal" then
+        Debug.Log("[AIEventHandler] 포탈 활성화 이벤트 수신")
+        if Global.CheckStage1Clear ~= nil then
+            Global.CheckStage1Clear()
+        else
+            Debug.LogError("[AIEventHandler] Global.CheckStage1Clear 함수를 찾을 수 없습니다.")
         end
     end
 end
