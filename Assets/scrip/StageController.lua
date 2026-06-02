@@ -29,7 +29,7 @@ function start()
     end
 
     -- 게임 시작 시 첫 번째 스테이지 정보 표시
-    SetStageInfo("Welcome to the Spring Stage. Pay close attention to the beautiful scenery around you and learn the value of Observation. When you are ready, here is a quiz for you: What is the total number of pears, tomatoes, and deer? If you know the answer, press the E key near the cube to enter your answer!")
+    SetStageInfo("Welcome to the Spring Stage. Pay close attention to the beautiful scenery around you and learn the value of Observation. When you are ready, here is a quiz for you: What is the total number of boats, tomatoes, and deer? If you know the answer, press the E key near the cube to enter your answer!")
     
     -- 시작 시 1스테이지 음악 재생 (SoundManager를 통해)
     if Global.SoundManager ~= nil then
